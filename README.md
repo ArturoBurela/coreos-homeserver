@@ -13,11 +13,21 @@ This image is built daily via GitHub Actions using [BlueBuild](https://blue-buil
   - Cryptographically signed with `cosign`.
 - **Containers**: Podman-compose included out of the box.
 
-## How to use this image
-Once you have installed a standard Fedora CoreOS on your server, you can rebase your system to this custom image by running:
+## How to Install (Bare Metal)
 
-```bash
-rpm-ostree rebase ostree-unverified-registry:ghcr.io/ArturoBurela/coreos-homeserver:latest
-```
+1. Download the [Fedora CoreOS Live ISO](https://fedoraproject.org/coreos/download?stream=stable) and flash it to a USB drive.
+2. Boot your bare-metal server from the USB drive.
+3. Once in the terminal, identify your target installation drive using:
+   ```bash
+   lsblk
+   ```
+   *(For example, `/dev/sda` or `/dev/nvme0n1`)*
+4. Run the installer, pointing it to your drive, this GitHub repository's Ignition file, and the custom image URL:
+   ```bash
+   sudo coreos-installer install /dev/sda \
+     --ignition-url https://raw.githubusercontent.com/ArturoBurela/coreos-homeserver/main/config.ign \
+     --image-url ostree-unverified-registry:ghcr.io/ArturoBurela/coreos-homeserver:latest
+   ```
+5. Remove the USB drive and reboot (`sudo reboot`). Your server will boot into your customized OS with your SSH keys pre-installed.
 
-After rebooting, you can pin the image and enable signature verification for future updates.
+*(Note: If you have an existing Fedora CoreOS installation, you can switch to this image by running `rpm-ostree rebase ostree-unverified-registry:ghcr.io/ArturoBurela/coreos-homeserver:latest` and rebooting).*
