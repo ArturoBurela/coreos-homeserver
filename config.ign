@@ -1,0 +1,19 @@
+{
+  "ignition": {
+    "version": "3.4.0"
+  },
+  "passwd": {
+    "users": [
+      {
+        "groups": [
+          "wheel",
+          "sudo"
+        ],
+        "name": "aburela",
+        "sshAuthorizedKeys": [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMcGI9OoXJ2nVRoIiYqqJIwxo3NgVVBvCyVfs1tjrbzb uno@arturoburela.com"
+        ]
+      }
+    ]
+  }
+}
