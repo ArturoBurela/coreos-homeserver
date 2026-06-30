@@ -14,7 +14,7 @@ modules:
   # INSTALL ZFS REPOSITORY
   - type: script
     snippets:
-      - "dnf install -y https://zfsonlinux.org/fedora/zfs-release-2-4$(rpm --eval '%{dist}').noarch.rpm"
+      - "dnf install -y https://zfsonlinux.org/fedora/zfs-release-3-1$(rpm --eval '%{dist}').noarch.rpm"
 
   # INSTALL PACKAGES
   - type: rpm-ostree
