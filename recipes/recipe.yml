@@ -1,0 +1,49 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+# image will be published to ghcr.io/<user>/<name>
+name: coreos-homeserver
+# description will be included in the image's metadata
+description: Immutable Fedora CoreOS image for Homelab with ZFS and Tailscale
+
+# the base image to build on top of (FROM) and the version tag to use
+base-image: quay.io/fedora/fedora-coreos
+image-version: stable # Using the stable stream of CoreOS
+
+# module configuration, executed in order
+modules:
+  # INSTALL ZFS REPOSITORY
+  - type: script
+    snippets:
+      - "dnf install -y https://zfsonlinux.org/fedora/zfs-release-2-4$(rpm --eval \"%\{dist\}\").noarch.rpm"
+
+  # INSTALL PACKAGES
+  - type: rpm-ostree
+    install:
+      # Required to compile ZFS modules via DKMS
+      - kernel-devel
+      - zfs
+      - tailscale
+      - firewalld
+      - nano
+      - git
+      - podman-compose
+
+  # ENABLE SYSTEM SERVICES
+  - type: systemd
+    system:
+      enabled:
+        - zfs-import-cache.service
+        - zfs-mount.service
+        - zfs.target
+        - tailscaled.service
+        - firewalld.service
+
+  # FIREWALL CONFIGURATION
+  - type: script
+    snippets:
+      - "firewall-offline-cmd --set-default-zone=drop"
+      - "firewall-offline-cmd --zone=drop --add-service=ssh"
+      - "ln -sf /usr/share/zoneinfo/America/Mexico_City /etc/localtime"
+
+  # CRYPTOGRAPHIC SIGNING
+  - type: signing
