@@ -11,3 +11,9 @@ passwd:
       groups:
         - wheel
         - sudo
+storage:
+  files:
+    - path: /etc/sudoers.d/aburela
+      mode: 0440
+      contents:
+        inline: "aburela ALL=(ALL) NOPASSWD: ALL"

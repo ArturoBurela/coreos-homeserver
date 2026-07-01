@@ -17,6 +17,16 @@
     ]
   },
   "storage": {
+    "files": [
+      {
+        "path": "/etc/sudoers.d/aburela",
+        "contents": {
+          "compression": "",
+          "source": "data:,aburela%20ALL%3D(ALL)%20NOPASSWD%3A%20ALL"
+        },
+        "mode": 288
+      }
+    ],
     "filesystems": [
       {
         "device": "/dev/mapper/root",
