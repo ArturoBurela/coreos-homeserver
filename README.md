@@ -26,8 +26,8 @@ This image is built daily via GitHub Actions using [BlueBuild](https://blue-buil
    ```bash
    sudo coreos-installer install /dev/sda \
      --ignition-url https://raw.githubusercontent.com/ArturoBurela/coreos-homeserver/main/config.ign \
-     --image-url ostree-unverified-registry:ghcr.io/ArturoBurela/coreos-homeserver:latest
+     --image-url ostree-unverified-registry:ghcr.io/arturoburela/coreos-homeserver:latest
    ```
 5. Remove the USB drive and reboot (`sudo reboot`). Your server will boot into your customized OS with your SSH keys pre-installed.
 
-*(Note: If you have an existing Fedora CoreOS installation, you can switch to this image by running `rpm-ostree rebase ostree-unverified-registry:ghcr.io/ArturoBurela/coreos-homeserver:latest` and rebooting).*
+*(Note: If you have an existing Fedora CoreOS installation, you can switch to this image by running `rpm-ostree rebase ostree-unverified-registry:ghcr.io/arturoburela/coreos-homeserver:latest` and rebooting).*
