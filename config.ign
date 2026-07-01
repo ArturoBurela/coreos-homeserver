@@ -15,5 +15,26 @@
         ]
       }
     ]
+  },
+  "storage": {
+    "filesystems": [
+      {
+        "device": "/dev/mapper/root",
+        "format": "xfs",
+        "label": "root",
+        "wipeFilesystem": true
+      }
+    ],
+    "luks": [
+      {
+        "clevis": {
+          "tpm2": true
+        },
+        "device": "/dev/disk/by-partlabel/root",
+        "label": "luks-root",
+        "name": "root",
+        "wipeVolume": true
+      }
+    ]
   }
 }
