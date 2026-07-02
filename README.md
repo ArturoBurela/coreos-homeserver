@@ -60,6 +60,12 @@ Your server will now boot into the base Fedora CoreOS using your SSH keys and LU
    ```bash
    sudo tailscale up
    ```
+3. **Set a Custom Hostname**:
+   By default, the server will have a generic hostname (like `localhost`). Set a custom name so it is easily identifiable on your network and in Tailscale:
+   ```bash
+   sudo hostnamectl set-hostname <your-custom-hostname>
+   sudo reboot
+   ```
 
 ## TPM2 Encryption & Recovery Key
 
